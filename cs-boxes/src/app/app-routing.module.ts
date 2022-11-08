@@ -1,22 +1,29 @@
 import { RouterModule, Routes } from '@angular/router';
-import { BoxesModule } from './features/boxes';
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
+import { HeaderComponent } from '@layoutheader';
 
 const ROUTES: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     redirectTo: 'boxes',
+    pathMatch: 'full',
   },
   {
-    loadChildren: () => import('@features/boxes/boxes.module').then((m) => m.BoxesModule),
-    path: 'boxes'
+    path: '',
+    component: HeaderComponent,
+    children: [
+      {
+        path: 'boxes',
+        loadChildren: () =>
+          import('@features/boxes/boxes.module').then((m) => m.BoxesModule),
+      },
+    ],
   },
   {
     data: { name: 'pageNotFound' },
     path: '**',
-    redirectTo: '/404'
-  }
+    redirectTo: '/404',
+  },
 ];
 
 @NgModule({
@@ -24,4 +31,3 @@ const ROUTES: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
