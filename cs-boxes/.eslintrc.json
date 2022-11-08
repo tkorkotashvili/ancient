@@ -1,0 +1,319 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "plugin:@nrwl/nx/typescript",
+        "plugin:@nrwl/nx/angular",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:crexi/all"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "prefix": "crx",
+            "style": "camelCase",
+            "type": "attribute"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "crx",
+            "style": "kebab-case",
+            "type": "element"
+          }
+        ],
+        "@angular-eslint/use-pipe-transform-interface": ["off"],
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "allowCircularSelfDependency": true,
+            "depConstraints": [
+              {
+                "sourceTag": "type:host",
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:feature", "type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:remote",
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:feature", "type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:feature", "type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:feature", "type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:util",
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:data-access",
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": ["scope:system", "type:ui"]
+              },
+              {
+                "sourceTag": "scope:system",
+                "onlyDependOnLibsWithTags": ["scope:pure", "scope:system"]
+              },
+              {
+                "sourceTag": "scope:pure",
+                "onlyDependOnLibsWithTags": [""]
+              }
+            ]
+          }
+        ],
+        "@typescript-eslint/adjacent-overload-signatures": ["off"],
+        "@typescript-eslint/ban-types": ["warn"],
+        "@typescript-eslint/member-ordering": ["off"],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "property",
+            "format": ["camelCase", "PascalCase", "snake_case"]
+          },
+          {
+            "selector": "property",
+            "modifiers": ["readonly"],
+            "format": ["UPPER_CASE"]
+          },
+          {
+            "selector": "property",
+            "modifiers": ["requiresQuotes"],
+            "format": null
+          }
+        ],
+        "@typescript-eslint/no-empty-interface": ["off"],
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "_"
+          }
+        ],
+        "arrow-body-style": ["error", "as-needed"],
+        "array-bracket-spacing": ["error"],
+        "arrow-parens": ["error"],
+        "arrow-spacing": ["error"],
+        "brace-style": ["error"],
+        "comma-dangle": ["error"],
+        "computed-property-spacing": ["error"],
+        "crexi/member-ordering": [
+          "error",
+          {
+            "default": [
+              "private-decorated-field",
+              "protected-decorated-field",
+              "public-decorated-field",
+              "decorated-field",
+              "private-abstract-field",
+              "private-readonly-field",
+              "private-static-field",
+              "private-instance-field",
+              "protected-abstract-field",
+              "protected-readonly-field",
+              "protected-static-field",
+              "protected-instance-field",
+              "public-abstract-field",
+              "abstract-field",
+              "public-readonly-field",
+              "readonly-field",
+              "public-static-field",
+              "static-field",
+              "public-instance-field",
+              "instance-field",
+              "field",
+              "public-decorated-get",
+              "decorated-get",
+              "private-decorated-get",
+              "private-decorated-set",
+              "private-decorated-method",
+              "protected-decorated-get",
+              "protected-decorated-set",
+              "protected-decorated-method",
+              "public-decorated-set",
+              "public-decorated-method",
+              "decorated-set",
+              "decorated-method",
+              "public-abstract-get",
+              "public-abstract-set",
+              "public-abstract-method",
+              "abstract-get",
+              "abstract-set",
+              "abstract-method",
+              "public-instance-get",
+              "instance-get",
+              "get",
+              "private-abstract-get",
+              "private-abstract-set",
+              "private-abstract-method",
+              "private-instance-get",
+              "private-instance-set",
+              "private-static-method",
+              "private-static-get",
+              "private-static-set",
+              "private-instance-method",
+              "protected-abstract-get",
+              "protected-abstract-set",
+              "protected-abstract-method",
+              "protected-instance-get",
+              "protected-instance-set",
+              "protected-static-method",
+              "protected-static-get",
+              "protected-static-set",
+              "protected-instance-method",
+              "public-instance-set",
+              "instance-set",
+              "set",
+              "public-static-method",
+              "static-method",
+              "public-static-get",
+              "static-get",
+              "public-static-set",
+              "static-set",
+              "constructor",
+              "ng-lifecycle-method",
+              "public-instance-method",
+              "instance-method",
+              "method"
+            ]
+          }
+        ],
+        "curly": ["error"],
+        "eol-last": ["error"],
+        "eqeqeq": ["error", "smart"],
+        "func-call-spacing": ["error"],
+        "function-call-argument-newline": ["error", "consistent"],
+        "function-paren-newline": ["error", "multiline"],
+        "indent": [
+          "error",
+          4,
+          {
+            "MemberExpression": 0,
+            "SwitchCase": 1
+          }
+        ],
+        "key-spacing": [
+          "error",
+          {
+            "afterColon": true,
+            "beforeColon": false
+          }
+        ],
+        "linebreak-style": ["error"],
+        "lines-between-class-members": [
+          "error",
+          "always",
+          {
+            "exceptAfterSingleLine": true
+          }
+        ],
+        "max-len": [
+          "error",
+          120,
+          {
+            "ignoreTemplateLiterals": true,
+            "ignoreRegExpLiterals": true
+          }
+        ],
+        "new-parens": ["error"],
+        "no-caller": ["error"],
+        "no-case-declarations": ["off"],
+        "no-empty": [
+          "error",
+          {
+            "allowEmptyCatch": true
+          }
+        ],
+        "no-eval": ["error"],
+        "no-extra-boolean-cast": ["warn"],
+        "no-multiple-empty-lines": [
+          "error",
+          {
+            "max": 1,
+            "maxEOF": 0,
+            "maxBOF": 0
+          }
+        ],
+        "no-restricted-globals": ["error", "document", "window"],
+        "no-var": ["error"],
+        "no-unused-expressions": ["error"],
+        "no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "_"
+          }
+        ],
+        "object-curly-spacing": ["error", "always"],
+        "object-shorthand": ["error", "always"],
+        "operator-linebreak": ["error", "before"],
+        "padded-blocks": ["error"],
+        "prefer-arrow-callback": ["error"],
+        "prefer-const": ["error"],
+        "quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true
+          }
+        ],
+        "quote-props": ["error", "as-needed"],
+        "semi": ["error"],
+        "sort-keys": [
+          "error",
+          "asc",
+          {
+            "caseSensitive": false,
+            "natural": true
+          }
+        ],
+        "space-before-blocks": ["error"],
+        "space-before-function-paren": ["error"],
+        "space-in-parens": ["error"],
+        "space-infix-ops": ["error"],
+        "spaced-comment": ["error"]
+      }
+    },
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        "no-restricted-globals": 0
+      }
+    },
+    {
+      "files": ["*.js"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {
+        "quotes": ["warn", "single"]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@nrwl/nx/angular-template"],
+      "rules": {
+        "@angular-eslint/template/eqeqeq": [
+          "error",
+          {
+            "allowNullOrUndefined": true
+          }
+        ]
+      }
+    },
+    {
+      "files": "*.json",
+      "parser": "jsonc-eslint-parser",
+      "rules": {}
+    }
+  ]
+}
