@@ -1,7 +1,10 @@
 <div class="card m-3">
-  <img class="img card-img-top" [src]="imageLink" alt="Card image cap">
+  <img class="img card-img-top" [src]="imageLink" alt="Card image cap" onerror="this.src='assets/images/blank-image.jpg'">
   <div class="card-body">
     <h5 class="card-title">Name: {{title}}</h5>
     <p class="card-text">Price: {{price}}</p>
+  </div>
+  <div class="actions">
+    <button class="btn"> Details</button>
   </div>
 </div>
