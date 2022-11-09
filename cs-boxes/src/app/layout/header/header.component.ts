@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Apollo, WatchQueryOptions } from 'apollo-angular';
-import { Observable } from 'rxjs';
+import { Apollo } from 'apollo-angular';
 import { UserService } from '../../core/services/user.service';
-import { IUser } from '../../core/interfaces/user/user';
-import { ApolloQueryResult } from '@apollo/client';
+import { IUser } from '../../core/interfaces/user';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,11 +10,15 @@ import { ApolloQueryResult } from '@apollo/client';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$: Observable<ApolloQueryResult<WatchQueryOptions<IUser>>> | undefined;
+  currentUserData: IUser = <IUser>{};
+  loading = false;
 
   constructor(private apollo: Apollo, private userService: UserService) {}
 
   ngOnInit() {
-    this.user$ = this.userService.getUserData();
+    this.userService.getUserData().subscribe((userData) => {
+      this.currentUserData = userData.data.currentUser;
+      this.loading = userData.loading;
+    });
   }
 }

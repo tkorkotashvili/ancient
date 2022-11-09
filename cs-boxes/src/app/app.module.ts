@@ -6,10 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from '@layoutheader';
+import { WalletsSumModule } from './shared/pipes/wallets-sum.pipe';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
-  imports: [BrowserModule, AppRoutingModule, GraphQLModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    GraphQLModule,
+    HttpClientModule,
+    WalletsSumModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

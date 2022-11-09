@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Apollo, WatchQueryOptions } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { GET_USER } from './user-queries';
 import { Observable } from 'rxjs';
-import { ApolloQueryResult } from '@apollo/client';
-import { IUser } from '../interfaces/user';
+import { ApolloQueryResult } from '@apollo/client/core';
+import { IUserResponse } from '../interfaces/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private apollo: Apollo) {}
 
-  getUserData(): Observable<ApolloQueryResult<WatchQueryOptions<IUser>>> {
-    return this.apollo.watchQuery<WatchQueryOptions<any>>({
+  getUserData(): Observable<ApolloQueryResult<IUserResponse>> {
+    return this.apollo.watchQuery<IUserResponse>({
       query: GET_USER,
     }).valueChanges;
   }

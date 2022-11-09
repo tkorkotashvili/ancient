@@ -1,10 +1,14 @@
 export interface IUser {
+  currency: number;
   id: string;
   name: string;
-  wallets: IWallet[];
+  wallets: IWalletItem[];
 }
 
-export interface IWallet {
-  amount: string;
-  currency: string;
+export interface IWalletItem {
+  amount: number;
+}
+
+export interface IUserResponse {
+  currentUser: IUser;
 }
