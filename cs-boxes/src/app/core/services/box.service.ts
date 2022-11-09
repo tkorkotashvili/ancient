@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { GET_USER } from './user-queries';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { IBoxResponse } from '../interfaces/box/box';
+import { GET_BOXES } from './box-queries';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class BoxService {
   constructor(private apollo: Apollo) {}
 
-  getUserData(): Observable<ApolloQueryResult<IBoxResponse>> {
+  getBoxes(): Observable<ApolloQueryResult<IBoxResponse>> {
     return this.apollo.watchQuery<IBoxResponse>({
-      query: GET_USER,
+      query: GET_BOXES,
     }).valueChanges;
   }
 }

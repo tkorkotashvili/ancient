@@ -1,9 +1,9 @@
 import { gql } from 'apollo-angular';
-import { UserQueryType } from '../interfaces/user/user-qury-type';
+import { BoxesQueryType } from '../interfaces/box/box-query-type';
 
 export const GET_BOXES = gql<
   { free: boolean; purchasable: boolean; openable: boolean },
-  UserQueryType
+  BoxesQueryType
 >`
   query {
     boxes(free: false, purchasable: true, openable: true) {

@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BaseSubscriptionClass } from '../../../core/utils/base-subscription';
+import { BoxService } from '../../../core/services/box.service';
+import { INode } from '../../../core/interfaces/box/box';
+import { map, Observable, of } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -6,7 +10,20 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent {
-  items = [1, 2, 3, 4, 5, 6];
-  abc = [1, 3, 4];
+export class ListComponent extends BaseSubscriptionClass implements OnInit {
+  boxItems$: Observable<INode[]> = of([]);
+  items: INode[] = [];
+  loading = true;
+
+  constructor(private boxService: BoxService) {
+    super();
+  }
+
+  ngOnInit() {
+    this.boxItems$ = this.boxService.getBoxes().pipe(
+      map((res) => {
+        return res.data.boxes.edges;
+      })
+    );
+  }
 }

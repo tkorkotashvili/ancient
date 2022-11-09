@@ -11,18 +11,15 @@
           <a class="nav-link">User: <span>{{ currentUserData.name}}</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"> Balance: <span>{{currentUserData.wallets | walletSum}} {{currentUserData.currency}}</span></a>
+<!--          <a class="nav-link"> Balance: <span>{{currentUserData.wallets | walletSum}} {{currentUserData.currency}}</span></a>-->
         </li>
       </ul>
       <ng-template #login>
         <a class="nav-link" href="https://steamcommunity.com/openid/login"><span>Please Login</span></a>
       </ng-template>
     </ng-template>
-
-
   </div>
 </nav>
-
 <router-outlet></router-outlet>
 
 
