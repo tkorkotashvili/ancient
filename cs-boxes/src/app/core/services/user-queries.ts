@@ -5,10 +5,10 @@ export const GET_USER = gql`
     currentUser {
       id
       name
+      currency
       wallets {
         id
         amount
-        currency
       }
     }
   }
