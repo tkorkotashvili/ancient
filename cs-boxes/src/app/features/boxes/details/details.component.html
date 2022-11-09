@@ -1,6 +1,31 @@
-<ng-container *ngIf="{ boxDetails : (boxDetails$ | async) } as context" >
-  <div *ngIf="context.boxDetails; else loading" class="d-flex justify-content-center w-100">
-  <app-item actionType='Open Box' [imageLink]="context.boxDetails?.iconUrl" [title]="context.boxDetails?.name" [price]="context.boxDetails?.price"></app-item>
+<ng-container *ngIf="{ boxDetails: (boxDetails$ | async), prizeItems: (prizeItems$ | async) } as context">
+  <div
+    *ngIf="context.boxDetails; else loading"
+    class="d-flex justify-content-center w-100"
+  >
+    <ng-template #openBox>
+      <app-item
+        *ngIf="!boxOpenLoading; else loadOpeningBox"
+        (actionsClicked)="onOpenBox(context.boxDetails.id)"
+        actionType="Open Box"
+        [imageLink]="context.boxDetails?.iconUrl"
+        [price]="context.boxDetails?.price"
+        [title]="context.boxDetails?.name"
+      ></app-item>
+    </ng-template>
+    <ng-template #loadOpeningBox>
+      Loading...
+    </ng-template>
+    <ng-container *ngIf="context.prizeItems; else openBox">
+        <app-item
+          *ngFor="let prize of context.prizeItems"
+          (actionsClicked)="onNavigateHome()"
+          actionType="Go Back"
+          [imageLink]="prize?.itemVariant?.iconUrl"
+          [price]="prize?.itemVariant?.value"
+          [title]="prize?.itemVariant?.name"
+        ></app-item>
+    </ng-container>
   </div>
   <ng-template #loading>Loading...</ng-template>
 </ng-container>

@@ -2,7 +2,7 @@
   <ng-container *ngIf="!(boxItems$ | async); else loadData">Loading...</ng-container>
   <ng-template #loadData>
     <app-item *ngFor="let item of (boxItems$ | async )"
-              (detailsClicked)="onDetails(item.node.id)"
+              (actionsClicked)="onDetails(item.node.id)"
               [price]="item.node.cost"
               [title]="item.node.name"
               [imageLink]="item.node.iconUrl"

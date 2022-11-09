@@ -19,13 +19,13 @@ export class ItemComponent implements OnInit {
   @Input() title: string | undefined;
   @Input() price: number | undefined;
 
-  @Output() detailsClicked = new EventEmitter<boolean>(false);
+  @Output() actionsClicked = new EventEmitter<boolean>(false);
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onDetails() {
-    this.detailsClicked.emit(true);
+    this.actionsClicked.emit(true);
   }
 }

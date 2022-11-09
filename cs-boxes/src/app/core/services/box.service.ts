@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo, MutationResult } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { IBoxDetailsResponse, IBoxResponse } from '../interfaces/box/box';
-import { GET_BOX_DETAILS, GET_BOXES } from './box-queries';
+import { GET_BOX_DETAILS_QUERY, GET_BOXES_QUERY } from './box-queries';
+import { OPEN_BOX_MUTATION } from './box-mutations';
+import { IOpenBoxResponse } from '../interfaces/box/box-openings';
 
 @Injectable({ providedIn: 'root' })
 export class BoxService {
@@ -11,7 +13,7 @@ export class BoxService {
 
   getBoxes(): Observable<ApolloQueryResult<IBoxResponse>> {
     return this.apollo.watchQuery<IBoxResponse>({
-      query: GET_BOXES,
+      query: GET_BOXES_QUERY,
     }).valueChanges;
   }
 
@@ -19,7 +21,17 @@ export class BoxService {
     id: string
   ): Observable<ApolloQueryResult<IBoxDetailsResponse>> {
     return this.apollo.watchQuery<IBoxDetailsResponse>({
-      query: GET_BOX_DETAILS(id),
+      query: GET_BOX_DETAILS_QUERY(id),
     }).valueChanges;
+  }
+
+  openBox(
+    boxId: string,
+    amount = 1
+  ): Observable<MutationResult<IOpenBoxResponse>> {
+    return this.apollo.mutate<IOpenBoxResponse>({
+      mutation: OPEN_BOX_MUTATION(boxId, amount),
+      variables: { boxId, amount },
+    });
   }
 }
