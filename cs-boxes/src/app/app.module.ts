@@ -7,12 +7,20 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from '@layoutheader';
 import { WalletsSumModule } from './shared/pipes/wallets-sum.pipe';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
+import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
+    BrowserModule,
+    PortalModule,
     GraphQLModule,
     HttpClientModule,
     WalletsSumModule,

@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -12,11 +14,18 @@ import {
   styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
+  @Input() actionType = 'Details';
   @Input() imageLink: string | undefined;
   @Input() title: string | undefined;
   @Input() price: number | undefined;
 
+  @Output() detailsClicked = new EventEmitter<boolean>(false);
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onDetails() {
+    this.detailsClicked.emit(true);
+  }
 }

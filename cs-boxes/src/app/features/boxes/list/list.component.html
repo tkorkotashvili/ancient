@@ -1,8 +1,12 @@
 <div class="container d-flex align-items-center justify-content-center w-100 h-100 flex-wrap">
   <ng-container *ngIf="!(boxItems$ | async); else loadData">Loading...</ng-container>
   <ng-template #loadData>
-    <app-item *ngFor="let item of (boxItems$ | async )" [price]="item.node.cost" [title]="item.node.name"
-              [imageLink]="item.node.iconUrl"></app-item>
+    <app-item *ngFor="let item of (boxItems$ | async )"
+              (detailsClicked)="onDetails(item.node.id)"
+              [price]="item.node.cost"
+              [title]="item.node.name"
+              [imageLink]="item.node.iconUrl"
+    ></app-item>
   </ng-template>
 </div>
 

@@ -1,5 +1,5 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">CS Cases</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,7 +11,7 @@
           <a class="nav-link">User: <span>{{ currentUserData.name}}</span></a>
         </li>
         <li class="nav-item">
-<!--          <a class="nav-link"> Balance: <span>{{currentUserData.wallets | walletSum}} {{currentUserData.currency}}</span></a>-->
+          <a class="nav-link"> Balance: <span>{{currentUserData.wallets | walletSum}} {{currentUserData.currency}}</span></a>
         </li>
       </ul>
       <ng-template #login>

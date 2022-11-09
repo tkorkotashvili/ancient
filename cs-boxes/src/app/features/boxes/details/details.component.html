@@ -1,0 +1,6 @@
+<ng-container *ngIf="{ boxDetails : (boxDetails$ | async) } as context" >
+  <div *ngIf="context.boxDetails; else loading" class="d-flex justify-content-center w-100">
+  <app-item actionType='Open Box' [imageLink]="context.boxDetails?.iconUrl" [title]="context.boxDetails?.name" [price]="context.boxDetails?.price"></app-item>
+  </div>
+  <ng-template #loading>Loading...</ng-template>
+</ng-container>

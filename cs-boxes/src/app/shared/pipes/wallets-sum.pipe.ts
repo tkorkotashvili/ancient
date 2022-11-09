@@ -7,11 +7,15 @@ import { IWalletItem } from '../../core/interfaces/user';
 })
 export class WalletsSum implements PipeTransform {
   transform(items: IWalletItem[]): any {
-    return items.reduce(
-      (previousValue: number, currentValue: IWalletItem) =>
-        previousValue + currentValue.amount,
-      0
-    );
+    if (items?.length) {
+      return items.reduce(
+        (previousValue: number, currentValue: IWalletItem) =>
+          previousValue + currentValue.amount,
+        0
+      );
+    } else {
+      return 0;
+    }
   }
 }
 

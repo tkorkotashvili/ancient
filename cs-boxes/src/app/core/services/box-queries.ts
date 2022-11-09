@@ -18,3 +18,18 @@ export const GET_BOXES = gql<
     }
   }
 `;
+
+export const GET_BOX_DETAILS = (id: string) => gql<
+  { free: boolean; purchasable: boolean; openable: boolean },
+  BoxesQueryType
+>`
+  query {
+    box(id: "${id}") {
+      id
+      name
+      iconUrl
+      price
+      currency
+    }
+  }
+`;

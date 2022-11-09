@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BaseSubscriptionClass } from '../../../core/utils/base-subscription';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { BoxService } from '../../../core/services/box.service';
 import { INode } from '../../../core/interfaces/box/box';
 import { map, Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { CdkPortal } from '@angular/cdk/portal';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10,14 +16,15 @@ import { map, Observable, of } from 'rxjs';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent extends BaseSubscriptionClass implements OnInit {
+export class ListComponent implements OnInit {
+  @ViewChild(CdkPortal, { static: false }) // @ts-ignore
+  portalContent: CdkPortal;
+
   boxItems$: Observable<INode[]> = of([]);
   items: INode[] = [];
   loading = true;
 
-  constructor(private boxService: BoxService) {
-    super();
-  }
+  constructor(private boxService: BoxService, private router: Router) {}
 
   ngOnInit() {
     this.boxItems$ = this.boxService.getBoxes().pipe(
@@ -25,5 +32,9 @@ export class ListComponent extends BaseSubscriptionClass implements OnInit {
         return res.data.boxes.edges;
       })
     );
+  }
+
+  onDetails(id: string) {
+    this.router.navigate(['boxes', id]);
   }
 }

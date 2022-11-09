@@ -4,7 +4,7 @@
     <h5 class="card-title">Name: {{title}}</h5>
     <p class="card-text">Price: {{price}}</p>
   </div>
-  <div class="actions">
-    <button class="btn"> Details</button>
+  <div class="actions d-flex justify-content-end m-2">
+    <button (click)="onDetails()" class="btn btn-success">{{actionType}}</button>
   </div>
 </div>
