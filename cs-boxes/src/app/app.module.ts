@@ -11,7 +11,6 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
-import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -20,7 +19,6 @@ import { PortalModule } from '@angular/cdk/portal';
     NoopAnimationsModule,
     AppRoutingModule,
     BrowserModule,
-    PortalModule,
     GraphQLModule,
     HttpClientModule,
     WalletsSumModule,

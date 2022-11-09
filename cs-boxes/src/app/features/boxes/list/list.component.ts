@@ -1,14 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BoxService } from '../../../core/services/box.service';
 import { INode } from '../../../core/interfaces/box/box';
 import { map, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { CdkPortal } from '@angular/cdk/portal';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,9 +11,6 @@ import { CdkPortal } from '@angular/cdk/portal';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  @ViewChild(CdkPortal, { static: false }) // @ts-ignore
-  portalContent: CdkPortal;
-
   boxItems$: Observable<INode[]> = of([]);
   items: INode[] = [];
   loading = true;
