@@ -1,2 +1,23 @@
-<p>header works!</p>
+<nav class="navbar sticky-top navbar-expand-lg bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul *ngIf="(user$ | async)?.data; else login" class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link">User: <span>{{(user$ | async)?.data.currentUser.name}}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"> Balance: <span>{{(user$ | async)?.data.currentUser.wallets[0].amount}} {{(user$ | async)?.data.currentUser.wallets[0].currency}}</span></a>
+      </li>
+    </ul>
+    <ng-template #login>
+      <a class="nav-link" href="https://steamcommunity.com/login/home/?goto=%2Fmy%2Fwishlist%2F"><span>Please Login</span></a>
+    </ng-template>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>
+
+
