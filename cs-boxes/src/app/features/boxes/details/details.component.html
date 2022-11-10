@@ -20,7 +20,7 @@
         <app-item
           *ngFor="let prize of context.prizeItems"
           (actionsClicked)="onNavigateHome()"
-          actionType="Go Back"
+          actionType="Go Home"
           [imageLink]="prize?.itemVariant?.iconUrl"
           [price]="prize?.itemVariant?.value"
           [title]="prize?.itemVariant?.name"

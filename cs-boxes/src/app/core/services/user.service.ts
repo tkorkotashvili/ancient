@@ -17,7 +17,6 @@ export class UserService {
   }
 
   walletUpdateSubscription(): Observable<FetchResult<IWalletUpdateresponse>> {
-    debugger;
     return this.apollo.subscribe<IWalletUpdateresponse>({
       query: WALLET_UPDATES,
     });

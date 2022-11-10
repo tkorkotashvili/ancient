@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BoxService } from '../../../core/services/box.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IBoxDetails } from '../../../core/interfaces/box/box';
 import { BaseSubscriptionClass } from '../../../core/utils/base-subscription';
 import { BehaviorSubject, finalize, map, Observable } from 'rxjs';
@@ -21,6 +21,7 @@ export class DetailsComponent extends BaseSubscriptionClass {
   constructor(
     private boxService: BoxService,
     private route: ActivatedRoute,
+    private router: Router,
     private toastr: ToastrService
   ) {
     super();
@@ -29,7 +30,9 @@ export class DetailsComponent extends BaseSubscriptionClass {
     // );
   }
 
-  onNavigateHome() {}
+  onNavigateHome() {
+    this.router.navigate(['boxes']);
+  }
 
   ngOnInit() {
     this.boxDetails$ = this.boxService
