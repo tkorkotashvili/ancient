@@ -24,6 +24,7 @@
     "@apollo/client": "^3.0.0",
     "@types/node": "^18.11.9",
     "apollo-angular": "^4.1.0",
+    "apollo-link-ws": "^1.0.20",
     "bootstrap": "^5.2.2",
     "graphql": "^16",
     "ngx-toastr": "^15.2.1",
