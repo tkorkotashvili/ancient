@@ -12,3 +12,9 @@ export interface IWalletItem {
 export interface IUserResponse {
   currentUser: IUser;
 }
+
+export interface IWalletUpdateresponse {
+  id: string;
+  amount: string;
+  name: string;
+}

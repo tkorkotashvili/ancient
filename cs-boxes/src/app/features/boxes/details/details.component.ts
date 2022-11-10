@@ -5,7 +5,7 @@ import { IBoxDetails } from '../../../core/interfaces/box/box';
 import { BaseSubscriptionClass } from '../../../core/utils/base-subscription';
 import { BehaviorSubject, finalize, map, Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { IPrizeItem } from '../../../core/interfaces/box/box-openings';
+import { IPrizeItem } from '../../../core/interfaces/box-openings/box-openings';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,7 +48,6 @@ export class DetailsComponent extends BaseSubscriptionClass {
           })
         )
         .subscribe((res) => {
-          console.log('res', res);
           this.prizeItems$.next(res.data?.openBox.boxOpenings);
           this.toastr.success('WINNER!WINNER!CHICKEN DINNER!');
         })

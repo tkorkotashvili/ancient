@@ -27,7 +27,11 @@ export class HeaderComponent extends BaseSubscriptionClass implements OnInit {
         .subscribe((userData) => {
           this.currentUserData = userData.data.currentUser;
           this.loading = userData.loading;
-        }))
+        })),
+      this.userService.walletUpdateSubscription().subscribe(
+        (res: any) => console.log('WalletUpdate', res),
+        (error) => console.log('WalletUpdateError', error)
+      )
     );
   }
 }

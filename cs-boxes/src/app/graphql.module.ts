@@ -9,7 +9,7 @@ import { OperationDefinitionNode } from 'graphql';
 const uri = 'https://api-staging.csgoroll.com/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const ws = new WebSocketLink({
-    uri: `ws://api-staging.csgoroll.com/graphql`,
+    uri: `wss://api-staging.csgoroll.com/graphql`,
     options: {
       reconnect: true,
     },

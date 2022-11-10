@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GET_USER } from './user-queries';
 import { Observable } from 'rxjs';
-import { ApolloQueryResult } from '@apollo/client/core';
-import { IUserResponse } from '../interfaces/user';
+import { ApolloQueryResult, FetchResult } from '@apollo/client/core';
+import { IUserResponse, IWalletUpdateresponse } from '../interfaces/user';
+import { WALLET_UPDATES } from './user-subscriptions';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -13,5 +14,12 @@ export class UserService {
     return this.apollo.watchQuery<IUserResponse>({
       query: GET_USER,
     }).valueChanges;
+  }
+
+  walletUpdateSubscription(): Observable<FetchResult<IWalletUpdateresponse>> {
+    debugger;
+    return this.apollo.subscribe<IWalletUpdateresponse>({
+      query: WALLET_UPDATES,
+    });
   }
 }
